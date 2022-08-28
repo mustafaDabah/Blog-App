@@ -8,8 +8,8 @@ export const photosAdapter = createEntityAdapter();
 
 const initialState = photosAdapter.getInitialState({ error: null });
 
-export const fetchPhotos = createAsyncThunk('posts/fetchPhotos', async () => {
-  const response = await axios.get(USERS_URL);
+export const fetchPhotos = createAsyncThunk('posts/fetchPhotos', async (initialAlbums) => {
+  const response = await axios.get(`${USERS_URL}?albumId=${initialAlbums.id}`);
   return response.data;
 });
 

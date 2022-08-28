@@ -2,6 +2,7 @@ import React, { useEffect, useRef } from 'react';
 import ViewportList from 'react-viewport-list';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
+import { LazyLoadComponent, LazyLoadImage } from 'react-lazy-load-image-component';
 import { fetchAlbums, selectAlbumsByUser } from '../../store/features/albums/albumsSlice';
 import SingleAlbums from '../SingleAlbums/SingleAlbums';
 import LoadingSpinner from '../LoadingSpinner/LoadingSpinner';
@@ -17,11 +18,22 @@ function AlbumsList() {
   }, [dispatch]);
 
   console.log('Albumslist');
-  const albumsContent = albums?.map((album) => <SingleAlbums album={album} key={album.id} />);
+  const albumsContent = albums?.map((album) => (
+    <LazyLoadComponent key={album.id}>
+      <SingleAlbums album={album} />
+    </LazyLoadComponent>
+  ));
 
-  console.log(albums?.length);
   return (
-    <div className="scroll-container" ref={ref}>
+    <div>
+      {albumsContent}
+    </div>
+  );
+}
+
+export default AlbumsList;
+/*
+ <div className="scroll-container" ref={ref}>
       <ViewportList
         viewportRef={ref}
         items={albums}
@@ -31,7 +43,5 @@ function AlbumsList() {
         {(album) => <SingleAlbums album={album} key={album.id} />}
       </ViewportList>
     </div>
-  );
-}
 
-export default AlbumsList;
+    */
