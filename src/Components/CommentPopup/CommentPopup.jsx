@@ -41,7 +41,7 @@ function CommentPopup({ closePopup, comment }) {
     <div className="fixed top-0 left-0 right-0 bottom-0 w-full z-10 h-full ">
       <div className="bg-black opacity-[.6] w-full -z-10 h-full absolute  p-3" />
       <form action="" className="flex justify-center items-center w-full h-full p-3 animate-scale-in">
-        <div className="min-w-fit w-[300px] h-[43%] bg-white rounded-md m-auto p-3 relative">
+        <div className="min-w-fit w-[300px] h-[50%] md:h-[43%] bg-white rounded-md m-auto p-3 relative">
           <button
             className="absolute right-3 cursor-pointer"
             onClick={closePopup}

@@ -13,8 +13,8 @@ function CommentList({ postId }) {
   }, [dispatch, postId]);
 
   useEffect(() => {
-    fetchTheComments();
-  }, [fetchTheComments]);
+    dispatch(fetchComments({ id: postId }));
+  }, [dispatch, postId]);
 
   const commentsContent = comments?.map((comment) => <SingleCommentMemo comment={comment} key={comment.id} />);
 
@@ -28,3 +28,4 @@ function CommentList({ postId }) {
 }
 
 export default CommentList;
+export const CommentListMemo = React.memo(CommentList);

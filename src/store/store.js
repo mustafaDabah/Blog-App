@@ -16,7 +16,7 @@ export const rootReducers = combineReducers({
 
 export const store = configureStore({
   reducer: rootReducers,
-  middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(logger),
+  // middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(logger),
 });
 
 export const setupStore = (preloadedState) => configureStore({

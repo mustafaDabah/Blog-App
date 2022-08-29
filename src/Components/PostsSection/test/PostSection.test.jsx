@@ -1,12 +1,9 @@
 import { MemoryRouter, Routes, Route } from 'react-router-dom';
-import { rest } from 'msw';
 import userEvent from '@testing-library/user-event';
-import { act } from 'react-dom/test-utils';
 import { fetchPosts } from '../../../store/features/posts/postSlice';
 import { setupStore } from '../../../store/store';
 import { render as rtlRender, screen, waitFor, waitForElementToBeRemoved } from '../../../test-utilities/renderConnected';
 import PostSection from '../PostsSection';
-import { server } from '../../../mocks/server';
 
 const renderWithProvider = (component) => rtlRender(
   <MemoryRouter initialEntries={['/2']}>
@@ -41,7 +38,7 @@ describe('testing posts list page all cases', () => {
     ]);
   });
 
-  test.only('testing the post list changes when search input change', async () => {
+  test('testing the post list changes when search input change', async () => {
     const store = setupStore();
     store.dispatch(fetchPosts());
 

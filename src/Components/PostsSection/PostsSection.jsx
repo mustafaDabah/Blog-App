@@ -30,7 +30,7 @@ function PostsSection() {
   console.log('post section', selectPostsBySearch);
 
   if (errorPosts || errorComments) return (<Alert title="please try again network error" />);
-  // defaultExpanded={false}
+
   return (
     <div className="container">
       <CollapseMemo title="user posts">

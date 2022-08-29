@@ -1,7 +1,7 @@
 import userEvent from '@testing-library/user-event';
 import { deleteComment } from '../../../store/features/comments/commentsSlice';
 import { setupStore } from '../../../store/store';
-import { render, screen } from '../../../test-utilities/renderConnected';
+import { render, screen, waitForElementToBeRemoved } from '../../../test-utilities/renderConnected';
 import SingleComment from '../SingleComment';
 
 const singleCommentData = {
@@ -50,7 +50,8 @@ describe('testing the single component', () => {
     const headerName = await screen.findByText('id labore ex et quam laborum');
 
     userEvent.click(deleteBtn);
-    const deleteBt = screen.getByRole('button', { name: /delee/i });
-    expect(headerName).not.toBeInTheDocument();
+    waitForElementToBeRemoved(() => headerName);
+    // expect(headerName).not.toBeInTheDocument();
+    const headerame = await screen.findByText('id labore ex et quam laboru');
   });
 });

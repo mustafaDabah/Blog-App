@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import useCollapse from 'react-collapsed';
 import { IoIosArrowDown, IoIosArrowUp } from 'react-icons/io';
 import ButtonCollapse from '../ButtonCollapse/ButtonCollapse';
 

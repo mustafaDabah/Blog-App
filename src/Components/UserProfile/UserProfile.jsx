@@ -17,7 +17,7 @@ function UserProfile() {
           {/* username and image  */}
           <UserImageProfile singleUser={singleUser} />
           {/* the rest of details */}
-          <div className="flex justify-between items-center mt-14">
+          <div className="flex justify-between items-center mt-14 flex-wrap">
             <div>
               <UserProfileItem title="Email" details={singleUser.email} />
               <UserProfileItem title="Phone" details={singleUser.phone} />
