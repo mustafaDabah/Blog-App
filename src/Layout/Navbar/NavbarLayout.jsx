@@ -7,7 +7,7 @@ function NavbarLayout() {
     <div className="bg-third w-full h-12 flex items-center">
       <div className="container">
         <Link to={HOME_PATH}>
-          <h2 className="text-white text-lg">Blog App</h2>
+          <p className="text-white text-lg">Blog App</p>
         </Link>
       </div>
     </div>

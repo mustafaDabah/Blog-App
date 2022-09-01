@@ -3,16 +3,13 @@ import { render } from '@testing-library/react';
 import { configureStore } from '@reduxjs/toolkit';
 import { Provider } from 'react-redux';
 import { rootReducers } from '../store/store';
-// As a basic setup, import your same slice reducers
 
 export function renderWithProviders(
   ui,
   {
     preloadedState = {},
-    // Automatically create a store instance if no store was passed in
     store = configureStore({ reducer: rootReducers,
       preloadedState }),
-    // setupStore(preloadedState),
     ...renderOptions
   } = {},
 ) {

@@ -27,8 +27,6 @@ function PostsSection() {
 
   const selectPostsBySearch = useMemo(() => posts.filter((post) => post.body.toLowerCase().includes(value.toLowerCase())), [posts, value]);
 
-  console.log('post section', selectPostsBySearch);
-
   if (errorPosts || errorComments) return (<Alert title="please try again network error" />);
 
   return (

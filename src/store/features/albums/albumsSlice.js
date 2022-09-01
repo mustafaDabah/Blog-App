@@ -30,13 +30,13 @@ const albumsSlice = createSlice({
 export const {
   selectAll: selectAllAlbums,
   selectById: selectAlbumsById,
-} = albumsAdapter.getSelectors((state) => state.posts, shallowEqual);
+} = albumsAdapter.getSelectors((state) => state.albums, shallowEqual);
 
 export const selectAlbumsError = (state) => state.albums.error;
 
 export const selectAlbumsByUser = createSelector(
   [selectAllAlbums, (state, userId) => userId],
-  (albums, userId) => albums.filter((post) => post.userId === userId),
+  (albums, userId) => albums.filter((album) => album.userId === userId),
 );
 
 export default albumsSlice.reducer;

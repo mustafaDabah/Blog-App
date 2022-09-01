@@ -8,8 +8,6 @@ function PhotosList({ albumsId }) {
   const dispatch = useDispatch();
   const photos = useSelector((state) => selectPhotosByUser(state, albumsId));
 
-  console.log(photos);
-
   useEffect(() => {
     dispatch(fetchPhotos({ id: albumsId }));
   }, [dispatch, albumsId]);

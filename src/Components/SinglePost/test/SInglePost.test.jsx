@@ -30,7 +30,7 @@ test('testing the comment list data', async () => {
   const buttonCollapse = screen.getByRole('button', { name: 'show user commit' });
   userEvent.click(buttonCollapse);
 
-  const commentTitles = await screen.findAllByRole('heading', { level: 3 });
+  const commentTitles = await screen.findAllByRole('heading', { level: 4 });
   const titles = commentTitles.map((title) => title.textContent);
   expect(titles).toHaveLength(6);
   expect(titles).toEqual([

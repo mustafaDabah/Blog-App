@@ -20,8 +20,6 @@ function SingleComment({ comment }) {
     dispatch(deleteComment(comment));
   };
 
-  console.log('single comment');
-
   return (
     <>
       {openPopup && (
@@ -57,9 +55,9 @@ function SingleComment({ comment }) {
         <div className="flex justify-between items-center md:flex-nowrap flex-wrap">
           <img src={Avator} alt="" className="w-1/4 mb-3 md:mb-0 md:w-1/6 mr-3" />
           <div>
-            <h3 className="font-bold">{comment.name}</h3>
-            <h3 className="font-thin italic ">{comment.email}</h3>
-            <h3 className="text-sm">{comment.body}</h3>
+            <h4 className="font-bold">{comment.name}</h4>
+            <h4 className="font-thin italic ">{comment.email}</h4>
+            <h4 className="text-sm">{comment.body}</h4>
           </div>
         </div>
       </div>

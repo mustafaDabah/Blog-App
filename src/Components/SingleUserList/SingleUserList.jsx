@@ -8,8 +8,6 @@ function SingleUserList({ item }) {
   const openPopup = () => setOpen(true);
   const closePopup = () => setOpen(false);
 
-  console.log(open);
-
   return (
     <div className="text-center text-forth mb-4 relative">
       <div className="flex text-left items-center">

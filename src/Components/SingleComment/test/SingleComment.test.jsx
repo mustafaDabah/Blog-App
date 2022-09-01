@@ -1,7 +1,5 @@
 import userEvent from '@testing-library/user-event';
-import { deleteComment } from '../../../store/features/comments/commentsSlice';
-import { setupStore } from '../../../store/store';
-import { render, screen, waitForElementToBeRemoved } from '../../../test-utilities/renderConnected';
+import { render, screen } from '../../../test-utilities/renderConnected';
 import SingleComment from '../SingleComment';
 
 const singleCommentData = {
@@ -16,7 +14,7 @@ describe('testing the single component', () => {
   test('testing the name email and body to be in DOM', async () => {
     render(<SingleComment comment={singleCommentData} />);
 
-    const allTitles = await screen.findAllByRole('heading', { level: 3 });
+    const allTitles = await screen.findAllByRole('heading', { level: 4 });
     const titles = allTitles.map((title) => title.textContent);
     expect(titles).toEqual([
       'id labore ex et quam laborum',
@@ -38,20 +36,5 @@ describe('testing the single component', () => {
     userEvent.click(iconClose);
 
     expect(titlePopup).not.toBeInTheDocument();
-  });
-
-  test.only('delete the comment', async () => {
-    const store = setupStore();
-    store.dispatch(deleteComment(singleCommentData));
-
-    render(<SingleComment comment={singleCommentData} />, { store });
-
-    const deleteBtn = screen.getByRole('button', { name: /delete/i });
-    const headerName = await screen.findByText('id labore ex et quam laborum');
-
-    userEvent.click(deleteBtn);
-    waitForElementToBeRemoved(() => headerName);
-    // expect(headerName).not.toBeInTheDocument();
-    const headerame = await screen.findByText('id labore ex et quam laboru');
   });
 });

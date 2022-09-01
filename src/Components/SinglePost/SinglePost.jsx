@@ -1,9 +1,8 @@
 import React from 'react';
 import Collapse from '../Collapse/Collapse';
-import CommentList, { CommentListMemo } from '../CommentList/CommentList';
+import { CommentListMemo } from '../CommentList/CommentList';
 
 function SinglePost({ post }) {
-  console.log('single post');
   return (
     <div className="bg-white rounded-lg p-3 mb-3">
       <h2 className="font-bold uppercase text-md border-b-2 pb-2 text-sm md:text-md">{post.title}</h2>

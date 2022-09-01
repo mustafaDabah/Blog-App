@@ -9,8 +9,6 @@ function Collapse({ title, children, defaultExpanded = true }) {
     setExpanded((prevExpanded) => !prevExpanded);
   };
 
-  console.log('collapes');
-
   return (
     <>
       <button type="button" onClick={toggleExpanded} className="w-full">

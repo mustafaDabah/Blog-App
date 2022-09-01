@@ -1,7 +1,6 @@
 import React from 'react';
 
 function InputPopup({ name, value, id, handleInput }) {
-  console.log(value);
   return (
     <label htmlFor={id} className="flex flex-col">
       <span className="capitalize text-third">{name}</span>

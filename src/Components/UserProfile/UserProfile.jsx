@@ -9,7 +9,6 @@ function UserProfile() {
   const { userId } = useParams();
   const singleUser = useSelector((state) => selectUserById(state, +userId));
 
-  console.log(singleUser);
   if (singleUser) {
     return (
       <div className="bg-third p-4 mb-12">

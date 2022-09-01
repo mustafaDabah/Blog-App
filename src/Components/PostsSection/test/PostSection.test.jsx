@@ -1,8 +1,9 @@
 import { MemoryRouter, Routes, Route } from 'react-router-dom';
 import userEvent from '@testing-library/user-event';
+import { act } from 'react-dom/test-utils';
 import { fetchPosts } from '../../../store/features/posts/postSlice';
 import { setupStore } from '../../../store/store';
-import { render as rtlRender, screen, waitFor, waitForElementToBeRemoved } from '../../../test-utilities/renderConnected';
+import { render as rtlRender, screen } from '../../../test-utilities/renderConnected';
 import PostSection from '../PostsSection';
 
 const renderWithProvider = (component) => rtlRender(
@@ -19,6 +20,12 @@ describe('testing posts list page all cases', () => {
     // test the loading spinner
     const loadingElement = screen.getByTestId('loading-spinner');
     expect(loadingElement).toBeInTheDocument();
+
+    await act(async () => {
+      await new Promise((resolve) => {
+        setTimeout(resolve, 50);
+      });
+    });
   });
 
   test('testing the posts list', async () => {
@@ -36,6 +43,12 @@ describe('testing posts list page all cases', () => {
       'voluptatem eligendi optio',
       'fuga et accusamus dolorum perferendis illo voluptas non doloremque neque facere ad qui dolorum molestiae beatae sed aut voluptas totam sit illum',
     ]);
+
+    await act(async () => {
+      await new Promise((resolve) => {
+        setTimeout(resolve, 50);
+      });
+    });
   });
 
   test('testing the post list changes when search input change', async () => {

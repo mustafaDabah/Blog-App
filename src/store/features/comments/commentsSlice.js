@@ -36,14 +36,9 @@ const commentsSlice = createSlice({
       state.error = action.error.message;
     });
     builder.addCase(updateComment.fulfilled, (state, action) => {
-      console.log(action.payload);
-      // if (!action.payload?.id) {
-      //   console.log('Update could not complete');
-      // }
       commentsAdapter.updateOne(state, action.payload);
     });
     builder.addCase(deleteComment.fulfilled, (state, action) => {
-      console.log(action);
       commentsAdapter.removeOne(state, action.payload.id);
     });
   },

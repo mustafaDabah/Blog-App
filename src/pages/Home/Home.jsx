@@ -1,6 +1,5 @@
 import React from 'react';
 import { Header, UsersList } from '../../Components';
-import UserPopup from '../../Components/UserPopup/UserPopup';
 
 function Home() {
   return (

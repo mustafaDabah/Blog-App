@@ -15,8 +15,6 @@ function AlbumsList() {
     dispatch(fetchAlbums()).unwrap();
   }, [dispatch]);
 
-  console.log('Albumslist');
-
   const albumsContent = albums?.map((album) => (
     <LazyLoadComponent key={album.id}>
       <SingleAlbums album={album} />

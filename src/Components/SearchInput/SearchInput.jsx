@@ -2,7 +2,6 @@ import React from 'react';
 import { MdSearch } from 'react-icons/md';
 
 function SearchInput({ handleInputChanges }) {
-  console.log('search input');
   return (
     <form className="flex mb-3">
       <input
