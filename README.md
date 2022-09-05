@@ -28,7 +28,7 @@ Launches the test runner in the interactive watch mode.
    - on hover to show popup with username and email
    - on click to navigate to user detail page 
    
-- 2.User detail page 
+2.User detail page 
    - show section with user profile
    - show section with user posts 
       - show post list w/ comments, each post can be updated or deleted.
