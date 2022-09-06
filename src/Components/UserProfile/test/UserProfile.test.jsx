@@ -1,20 +1,14 @@
 import { MemoryRouter, Routes, Route } from 'react-router-dom';
-import { fetchUsers } from '../../../store/features/users/usersSlice';
-import { setupStore } from '../../../store/store';
 import { screen, render } from '../../../test-utilities/renderConnected';
 import UserProfile from '../UserProfile';
 
 test('testing the content of user profile component', async () => {
-  const store = setupStore();
-  store.dispatch(fetchUsers());
-
   render(
     <MemoryRouter initialEntries={['/1']}>
       <Routes>
         <Route path=":userId" element={<UserProfile />} />
       </Routes>
     </MemoryRouter>,
-    { store },
   );
 
   // get the all titles and make test on it

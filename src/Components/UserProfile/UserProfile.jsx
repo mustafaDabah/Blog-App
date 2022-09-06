@@ -1,13 +1,15 @@
 import React from 'react';
-import { useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
-import { selectUserById } from '../../store/features/users/usersSlice';
+import { useGetUserByIdQuery } from '../../store/features/users/usersSlice';
 import UserImageProfile from '../UserImageProfile/UserImageProfile';
 import UserProfileItem from '../UserProfileItem/UserProfileItem';
 
 function UserProfile() {
   const { userId } = useParams();
-  const singleUser = useSelector((state) => selectUserById(state, +userId));
+
+  const {
+    data: singleUser,
+  } = useGetUserByIdQuery(userId);
 
   if (singleUser) {
     return (

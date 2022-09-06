@@ -1,40 +1,21 @@
-import { createAsyncThunk, createSlice, createEntityAdapter } from '@reduxjs/toolkit';
-import axios from 'axios';
-import { shallowEqual } from 'react-redux';
+import { apiSlice } from '../../API/apiSlice.js';
 
-const USERS_URL = 'https://jsonplaceholder.typicode.com/users';
+export const extendedApiSlice = apiSlice.injectEndpoints({
+  endpoints: (builder) => ({
+    getUsers: builder.query({
+      query: () => '/users',
+      providesTags: ['Users'],
+    }),
+    getUserById: builder.query({
+      query: (id) => `/users/${id}`,
+      providesTags: ['Users'],
+    }),
+  }),
 
-export const usersAdapter = createEntityAdapter();
-
-const initialState = usersAdapter.getInitialState({ error: null });
-
-export const fetchUsers = createAsyncThunk('users/fetchUsers', async () => {
-  const response = await axios.get(USERS_URL);
-  return response.data;
 });
-
-const usersSlice = createSlice({
-  name: 'users',
-  initialState,
-  reducers: {},
-  extraReducers(builder) {
-    builder.addCase(fetchUsers.fulfilled, (state, action) => {
-      usersAdapter.addMany(state, action.payload);
-    });
-    builder.addCase(fetchUsers.rejected, (state, action) => {
-      state.error = action.error.message;
-    });
-  },
-});
-
-export const selectPostError = (state) => state.users.error;
 
 export const {
-  selectEntities: selectUserEntities,
-  selectIds: selectUserIds,
-  selectAll: selectAllUsers,
-  selectById: selectUserById,
+  useGetUsersQuery,
+  useGetUserByIdQuery,
 
-} = usersAdapter.getSelectors((state) => state.users, shallowEqual);
-
-export default usersSlice.reducer;
+} = extendedApiSlice;

@@ -1,18 +1,19 @@
 import React from 'react';
 import { render } from '@testing-library/react';
-import { configureStore } from '@reduxjs/toolkit';
 import { Provider } from 'react-redux';
-import { rootReducers } from '../store/store';
+import { setupListeners } from '@reduxjs/toolkit/dist/query';
+import { setupStore } from '../store/store';
 
 export function renderWithProviders(
   ui,
   {
     preloadedState = {},
-    store = configureStore({ reducer: rootReducers,
-      preloadedState }),
+    store = setupStore(preloadedState),
     ...renderOptions
   } = {},
 ) {
+  setupListeners(store.dispatch);
+
   function Wrapper({ children }) {
     return (
       <Provider store={store}>

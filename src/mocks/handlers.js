@@ -74,46 +74,52 @@ export const handlers = [
       },
     ]),
   )),
-  rest.get('https://jsonplaceholder.typicode.com/posts', async (req, res, ctx) => res(
-    ctx.json([
+  rest.get('https://jsonplaceholder.typicode.com/users/1', async (req, res, ctx) => res(
+    ctx.json(
       {
-        userId: 1,
         id: 1,
-        title: 'sunt aut facere repellat provident occaecati excepturi optio reprehenderit',
-        body: 'quia et suscipit suscipit recusandae consequuntur expedita et cum reprehenderit molestiae ut ut quas totam nostrum rerum est autem sunt rem eveniet architecto',
+        name: 'Leanne Graham',
+        username: 'Bret',
+        email: 'Sincere@april.biz',
+        address: {
+          street: 'Kulas Light',
+          suite: 'Apt. 556',
+          city: 'Gwenborough',
+          zipcode: '92998-3874',
+          geo: {
+            lat: '-37.3159',
+            lng: '81.1496',
+          },
+        },
+        phone: '1-770-736-8031 x56442',
+        website: 'hildegard.org',
+        company: {
+          name: 'Romaguera-Crona',
+          catchPhrase: 'Multi-layered client-server neural-net',
+          bs: 'harness real-time e-markets',
+        },
       },
-      {
-        userId: 1,
-        id: 2,
-        title: 'qui est esse',
-        body: 'est rerum tempore vitae sequi sint nihil reprehenderit dolor beatae ea dolores neque fugiat blanditiis voluptate porro vel nihil molestiae ut reiciendis qui aperiam non debitis possimus qui neque nisi nulla',
-      },
-      {
-        userId: 2,
-        id: 13,
-        title: 'dolorum ut in voluptas mollitia et saepe quo animi',
-        body: 'aut dicta possimus sint mollitia voluptas commodi quo doloremque iste corrupti reiciendis voluptatem eius rerum sit cumque quod eligendi laborum minima perferendis recusandae assumenda consectetur porro architecto ipsum ipsam',
-      },
-      {
-        userId: 2,
-        id: 14,
-        title: 'voluptatem eligendi optio',
-        body: 'fuga et accusamus dolorum perferendis illo voluptas non doloremque neque facere ad qui dolorum molestiae beatae sed aut voluptas totam sit illum',
-      },
-      {
-        userId: 3,
-        id: 29,
-        title: 'iusto eius quod necessitatibus culpa ea',
-        body: 'odit magnam ut saepe sed non qui tempora atque nihil accusamus illum doloribus illo dolor eligendi repudiandae odit magni similique sed cum maiores',
-      },
-      {
-        userId: 3,
-        id: 30,
-        title: 'a quo magni similique perferendis',
-        body: 'alias dolor cumque impedit blanditiis non eveniet odio maxime blanditiis amet eius quis tempora quia autem rem a provident perspiciatis quia',
-      },
-    ]),
+    ),
   )),
+  rest.get('https://jsonplaceholder.typicode.com/posts', async (req, res, ctx) => {
+    req.url.searchParams.get('userId=1'); //
+    return res(
+      ctx.json([
+        {
+          userId: 1,
+          id: 1,
+          title: 'sunt aut facere repellat provident occaecati excepturi optio reprehenderit',
+          body: 'quia et suscipit suscipit recusandae consequuntur expedita et cum reprehenderit molestiae ut ut quas totam nostrum rerum est autem sunt rem eveniet architecto',
+        },
+        {
+          userId: 1,
+          id: 2,
+          title: 'qui est esse',
+          body: 'est rerum tempore vitae sequi sint nihil reprehenderit dolor beatae ea dolores neque fugiat blanditiis voluptate porro vel nihil molestiae ut reiciendis qui aperiam non debitis possimus qui neque nisi nulla',
+        },
+      ]),
+    );
+  }),
   rest.get('https://jsonplaceholder.typicode.com/comments', async (req, res, ctx) => res(
     ctx.json([
       {

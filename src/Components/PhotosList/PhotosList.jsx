@@ -1,18 +1,12 @@
-import React, { useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import React from 'react';
 import { LazyLoadComponent } from 'react-lazy-load-image-component';
-import { fetchPhotos, selectPhotosByUser } from '../../store/features/photos/photosSlice';
+import { useGetPhotosByIdQuery } from '../../store/features/photos/photosSlice';
 import SinglePhoto from '../SinglePhoto/SinglePhoto';
 
 function PhotosList({ albumsId }) {
-  const dispatch = useDispatch();
-  const photos = useSelector((state) => selectPhotosByUser(state, albumsId));
+  const { data: photos } = useGetPhotosByIdQuery(albumsId);
 
-  useEffect(() => {
-    dispatch(fetchPhotos({ id: albumsId }));
-  }, [dispatch, albumsId]);
-
-  const photosContent = photos.map((photo) => <SinglePhoto photo={photo} key={photo.id} />);
+  const photosContent = photos?.map((photo) => <SinglePhoto photo={photo} key={photo.id} />);
 
   return (
     <LazyLoadComponent>

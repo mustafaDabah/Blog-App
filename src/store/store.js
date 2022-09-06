@@ -1,26 +1,20 @@
 import { combineReducers, configureStore } from '@reduxjs/toolkit';
-import logger from 'redux-logger';
-import usersReducer from './features/users/usersSlice';
-import postsReducer from './features/posts/postSlice';
+import { apiSlice } from './API/apiSlice';
 import commentsReducer from './features/comments/commentsSlice';
-import albumsReducer from './features/albums/albumsSlice';
-import photosReducer from './features/photos/photosSlice';
 
 export const rootReducers = combineReducers({
-  users: usersReducer,
-  posts: postsReducer,
   comments: commentsReducer,
-  albums: albumsReducer,
-  photos: photosReducer,
+  [apiSlice.reducerPath]: apiSlice.reducer,
 });
 
 export const store = configureStore({
   reducer: rootReducers,
-  // middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(logger),
+  middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(apiSlice.middleware),
 });
 
 export const setupStore = (preloadedState) => configureStore({
   reducer: rootReducers,
+  middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(apiSlice.middleware),
   preloadedState,
 });
 

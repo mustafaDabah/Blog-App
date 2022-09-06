@@ -5,10 +5,9 @@ import { Provider } from 'react-redux';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import App from './App';
 import { store } from './store/store';
-import { fetchUsers } from './store/features/users/usersSlice';
+import { extendedApiSlice } from './store/features/users/usersSlice';
 
-store.dispatch(fetchUsers());
-
+store.dispatch(extendedApiSlice.endpoints.getUsers.initiate());
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <Provider store={store}>

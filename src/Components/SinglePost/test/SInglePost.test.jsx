@@ -1,7 +1,5 @@
 
 import userEvent from '@testing-library/user-event';
-import { fetchComments } from '../../../store/features/comments/commentsSlice';
-import { setupStore } from '../../../store/store';
 import { render, screen } from '../../../test-utilities/renderConnected';
 import SinglePost from '../SinglePost';
 
@@ -13,10 +11,7 @@ const singlePostData = {
 };
 
 test('testing the comment list data', async () => {
-  const store = setupStore();
-  store.dispatch(fetchComments());
-
-  render(<SinglePost post={singlePostData} />, { store });
+  render(<SinglePost post={singlePostData} />);
 
   // testing the component date
   const postTitles = await screen.findAllByRole('heading', { level: 2 });

@@ -1,13 +1,11 @@
 import { MemoryRouter, Routes, Route } from 'react-router-dom';
 import userEvent from '@testing-library/user-event';
 import { act } from 'react-dom/test-utils';
-import { fetchPosts } from '../../../store/features/posts/postSlice';
-import { setupStore } from '../../../store/store';
 import { render as rtlRender, screen } from '../../../test-utilities/renderConnected';
 import PostSection from '../PostsSection';
 
 const renderWithProvider = (component) => rtlRender(
-  <MemoryRouter initialEntries={['/2']}>
+  <MemoryRouter initialEntries={['/1']}>
     <Routes>
       <Route path="/:userId" element={component} />
     </Routes>
@@ -29,19 +27,16 @@ describe('testing posts list page all cases', () => {
   });
 
   test('testing the posts list', async () => {
-    const store = setupStore();
-    store.dispatch(fetchPosts());
-
-    renderWithProvider(<PostSection />, { store });
+    renderWithProvider(<PostSection />);
 
     // testing the titles and contents of posts
     const postsTitles = await screen.findAllByRole('heading', { level: 2 });
     const titles = postsTitles.map((el) => el.textContent);
     expect(titles).toEqual([
-      'dolorum ut in voluptas mollitia et saepe quo animi',
-      'aut dicta possimus sint mollitia voluptas commodi quo doloremque iste corrupti reiciendis voluptatem eius rerum sit cumque quod eligendi laborum minima perferendis recusandae assumenda consectetur porro architecto ipsum ipsam',
-      'voluptatem eligendi optio',
-      'fuga et accusamus dolorum perferendis illo voluptas non doloremque neque facere ad qui dolorum molestiae beatae sed aut voluptas totam sit illum',
+      'sunt aut facere repellat provident occaecati excepturi optio reprehenderit',
+      'quia et suscipit suscipit recusandae consequuntur expedita et cum reprehenderit molestiae ut ut quas totam nostrum rerum est autem sunt rem eveniet architecto',
+      'qui est esse',
+      'est rerum tempore vitae sequi sint nihil reprehenderit dolor beatae ea dolores neque fugiat blanditiis voluptate porro vel nihil molestiae ut reiciendis qui aperiam non debitis possimus qui neque nisi nulla',
     ]);
 
     await act(async () => {
@@ -52,10 +47,7 @@ describe('testing posts list page all cases', () => {
   });
 
   test('testing the post list changes when search input change', async () => {
-    const store = setupStore();
-    store.dispatch(fetchPosts());
-
-    renderWithProvider(<PostSection />, { store });
+    renderWithProvider(<PostSection />);
     // when input is empty return all posts
     const inputBox = screen.getByPlaceholderText('search for post');
     const postsTitles = await screen.findAllByRole('heading', { level: 2 });
@@ -64,22 +56,22 @@ describe('testing posts list page all cases', () => {
 
     const titles = postsTitles.map((el) => el.textContent);
     expect(titles).toEqual([
-      'dolorum ut in voluptas mollitia et saepe quo animi',
-      'aut dicta possimus sint mollitia voluptas commodi quo doloremque iste corrupti reiciendis voluptatem eius rerum sit cumque quod eligendi laborum minima perferendis recusandae assumenda consectetur porro architecto ipsum ipsam',
-      'voluptatem eligendi optio',
-      'fuga et accusamus dolorum perferendis illo voluptas non doloremque neque facere ad qui dolorum molestiae beatae sed aut voluptas totam sit illum',
+      'sunt aut facere repellat provident occaecati excepturi optio reprehenderit',
+      'quia et suscipit suscipit recusandae consequuntur expedita et cum reprehenderit molestiae ut ut quas totam nostrum rerum est autem sunt rem eveniet architecto',
+      'qui est esse',
+      'est rerum tempore vitae sequi sint nihil reprehenderit dolor beatae ea dolores neque fugiat blanditiis voluptate porro vel nihil molestiae ut reiciendis qui aperiam non debitis possimus qui neque nisi nulla',
     ]);
 
     // when starts search
     userEvent.clear(inputBox);
-    userEvent.type(inputBox, 'aut dicta');
+    userEvent.type(inputBox, 'sunt');
 
     const postsTitlesWhenInputChange = await screen.findAllByRole('heading', { level: 2 });
     const newTitles = postsTitlesWhenInputChange.map((el) => el.textContent);
 
     expect(newTitles).toEqual([
-      'dolorum ut in voluptas mollitia et saepe quo animi',
-      'aut dicta possimus sint mollitia voluptas commodi quo doloremque iste corrupti reiciendis voluptatem eius rerum sit cumque quod eligendi laborum minima perferendis recusandae assumenda consectetur porro architecto ipsum ipsam',
+      'sunt aut facere repellat provident occaecati excepturi optio reprehenderit',
+      'quia et suscipit suscipit recusandae consequuntur expedita et cum reprehenderit molestiae ut ut quas totam nostrum rerum est autem sunt rem eveniet architecto',
     ]);
 
     // when don't found anything

@@ -13,11 +13,8 @@
 
 import { MemoryRouter, Routes, Route } from 'react-router-dom';
 import userEvent from '@testing-library/user-event';
-import { render as rtlRender, screen, waitFor } from '@testing-library/react';
-import { Provider } from 'react-redux';
+import { render as rtlRender, screen, waitFor } from '../test-utilities/renderConnected';
 import App from '../App';
-import { setupStore } from '../store/store';
-import { fetchUsers } from '../store/features/users/usersSlice';
 
 const renderWithProvider = (component) => rtlRender(
   <MemoryRouter>
@@ -28,13 +25,8 @@ const renderWithProvider = (component) => rtlRender(
 );
 
 test('blog phases for happy path', async () => {
-  const store = setupStore();
-  store.dispatch(fetchUsers());
-
   renderWithProvider(
-    <Provider store={store}>
-      <App />
-    </Provider>,
+    <App />,
   );
 
   // >>>> testing the list of users
