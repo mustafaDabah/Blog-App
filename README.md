@@ -23,7 +23,7 @@ Launches the test runner in the interactive watch mode.
 
 # what about this app ? 
 
-##### you created web app which has the following 
+##### I created web app which has the following 
 1. User list by name 
    - on hover to show popup with username and email
    - on click to navigate to user detail page 
